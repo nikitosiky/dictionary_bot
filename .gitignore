@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+bot.db
+*.db
+.env
+token.env
+*.log
+.idea/
+viewDB.py
