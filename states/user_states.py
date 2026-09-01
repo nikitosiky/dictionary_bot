@@ -8,4 +8,5 @@ class PersonSettings(StatesGroup):
 
 
 class PersonTest(StatesGroup):
-    waiting_test_answer=State()
+    waiting_test1_answer=State()
+    waiting_test2_answer = State()

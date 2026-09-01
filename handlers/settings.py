@@ -1,6 +1,6 @@
 from aiogram import Router
 from aiogram.filters import Command
-from aiogram.types import Message
+from aiogram.types import Message, KeyboardButton, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from aiogram.fsm.context import FSMContext
 from states.user_states import PersonSettings
 from aiogram import Bot
@@ -14,9 +14,12 @@ scheduler=AsyncIOScheduler()
 ###START
 @router.message(Command("start"))
 async def command_start_handler(message: Message) -> None:
-    await message.answer("Hello! I'm a dictionary-bot\n"
-                         "You can ... (send words with translate, then during the day i would help learn new words).\n"
-                         "To show command use /command")
+    kb=[[
+        KeyboardButton(text="/command")
+    ]]
+    keyboard= ReplyKeyboardMarkup(keyboard=kb, resize_keyboard=True)
+    await message.answer("Hello! I'm a dictionary-bot\n", reply_markup=keyboard)
+
 
 ###COMMAND
 @router.message(Command("command"))
@@ -26,7 +29,7 @@ async def command_show(message: Message)->None:
                          "/test - start testing\n"
                          "/remind - set daily remind\n"
                          "/list - show all your dictionary\n"
-                         "/delete - delete a pair from your dictionary")
+                         "/delete - delete a pair from your dictionary", reply_markup=ReplyKeyboardRemove())
 
 ###COUNT
 @router.message(Command("count"))
